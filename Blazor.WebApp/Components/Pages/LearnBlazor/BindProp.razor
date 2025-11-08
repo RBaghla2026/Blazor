@@ -1,0 +1,15 @@
+﻿@page "/learnBlazor/bindprop"
+
+<h3>Product - Data Binding</h3>
+
+Name: @product.Name <br />
+Price: @product.Price <br />
+Active: @product.IsActive
+
+@code {
+    Models.Product product = new Models.Product { 
+        Name = "Apple", 
+        Price = 1.5M,
+        IsActive = true
+    };
+}
