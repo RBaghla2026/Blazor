@@ -1,0 +1,81 @@
+﻿@page "/learnblazor/demoproduct"
+
+<div class="row">
+    <h3>Demo Product</h3>
+    <hr />
+
+    @foreach (var item in Products)
+    {
+        <div class="col border p-3">
+            Product @item.Id
+            <br />
+            Name: @item.Name
+            <br />
+            Show Properties:
+            <input type="checkbox" @bind="@item.IsActive" />
+
+            @if (item.IsActive)
+            {
+                @foreach (var prop in item.ProductVarients)
+                {
+                    <p>
+                        Id: @prop.Id<br />
+                        Color: @prop.Color <br />
+                        Size: @prop.Size
+                    </p>
+                }
+            }
+            <br />
+            <input type="button" value="Delete" class="btn btn-danger" />
+        </div>
+        <br />
+    }
+</div>
+
+<div class="row">
+    Counter: @Count
+    <br />
+    <input type="button" value="Counter" class="btn btn-success" @onclick="IncrementCounter" />
+</div>
+
+
+@code {
+    private int Count = 0;
+
+    private void IncrementCounter()
+    {
+        Count++;
+    }
+
+    private List<Product> Products = new List<Product>();
+    private bool showProperties;
+
+    protected override void OnInitialized()
+    {
+        Products.Add(new()
+        {
+            Id = 1,
+            Name = "Midnight Blaze",
+            IsActive = false,
+            ProductVarients = new()
+                {
+                    new ProductVarient { Id = 1, Color="Rose", Price = 2000},
+                    new ProductVarient { Id = 2, Color="Purple", Price = 1000},
+                    new ProductVarient { Id = 3, Color="Magenta", Price = 3000}
+                }
+        });
+
+        Products.Add(new()
+        {
+            Id = 2,
+            Name = "Blossom Lily",
+            IsActive = true,
+            ProductVarients = new()
+            {
+                  new ProductVarient { Id = 1, Color="Purple", Price = 1000},
+                    new ProductVarient { Id = 2, Color="Rose", Price = 2000},
+                    new ProductVarient { Id = 3, Color="Magenta", Price = 3000}
+            }
+        });
+    }
+}
