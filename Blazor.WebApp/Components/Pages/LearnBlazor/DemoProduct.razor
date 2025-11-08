@@ -35,16 +35,16 @@
 <div class="row">
     Counter: @Count
     <br />
-    <input type="button" value="Counter" class="btn btn-success" @onclick="IncrementCounter" />
+    <input type="button" value="Counter" class="btn btn-success" @onclick="() => IncrementCounter(5)" />
 </div>
 
 
 @code {
     private int Count = 0;
 
-    private void IncrementCounter()
+    private void IncrementCounter(int num)
     {
-        Count++;
+        Count = Count + num;
     }
 
     private List<Product> Products = new List<Product>();
