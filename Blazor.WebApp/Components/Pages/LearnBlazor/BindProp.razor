@@ -4,21 +4,71 @@
 
 Name: @product.Name
 <br />
-Active: @product.IsActive
+IsActive:
+<input type="checkbox" @bind="@product.IsActive" />
+<br />
+The Product is: @(product.IsActive ? "Active" : "Inactive")
 <br />
 Price: @product.Price
 <br />
-<input @bind="@product.Price" @bind:event= "oninput" />
+<input @bind="@product.Price" @bind:event="oninput" />
 <br />
-<input @bind-value="@product.Price" @bind-value:event="oninput" />
+Varient:
+<select @bind="@selectVariant">
+    @foreach (var item in product.LstProductVarients)
+    {
+        <option value="@item.Id">@item.Color</option>
+    }
+</select>
 <br />
-
+<br />
+Selected Varient is:
+<br />
+@if (selectVariant > 0)
+{
+    <p>
+        Id: @selectVariant
+        <br />
+        Color: @product.LstProductVarients.FirstOrDefault(x => x.Id == selectVariant).Color
+        <br />
+        Size: @product.LstProductVarients.FirstOrDefault(x => x.Id == selectVariant).Size
+        <br />
+        Size: @product.LstProductVarients.FirstOrDefault(x => x.Id == selectVariant).Price
+        <br />
+    </p>
+}
 
 @code {
+    private int selectVariant;
+
     Models.Product product = new Models.Product
     {
         Name = "Apple",
         Price = 1.5M,
-        IsActive = true
+        IsActive = true,
+        LstProductVarients = new List<Models.ProductVarient>()
+        {
+            new Models.ProductVarient()
+            {
+                Id =1,
+                Color = "Red",
+                Size = "11 inch",
+                Price = 500000
+            },
+            new Models.ProductVarient()
+            {
+                Id =2,
+                Color = "Black",
+                Size = "12 inch",
+                Price = 600000
+            },
+            new Models.ProductVarient()
+            {
+                Id =3,
+                Color = "Violet",
+                Size = "13 inch",
+                Price = 700000
+            },
+        }
     };
 }
