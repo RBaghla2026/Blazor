@@ -7,7 +7,7 @@
         public decimal Price { get; set; }
         public string Description { get; set; }
         public bool IsActive { get; set; }
-        public List<ProductVarient> LstProductVarients { get; set; }
+        public List<ProductVarient> ProductVarients { get; set; }
     }
 
     public class ProductVarient

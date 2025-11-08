@@ -3,16 +3,17 @@
 
 <div class="row">
     <div class="col border p-3">
-        <h2>Product Playground</h2>
+        <h4>Product Playground</h4>
+        <hr />
         IsActive:
         <input type="checkbox" @bind="@product.IsActive" />
         <br />
-        
+
         <input @bind="@product.Price" @bind:event="oninput" />
         <br />
         Varient:
         <select @bind="@selectVariant">
-            @foreach (var item in product.LstProductVarients)
+            @foreach (var item in product.ProductVarients)
             {
                 <option value="@item.Id">@item.Color</option>
             }
@@ -21,7 +22,8 @@
     </div>
 
     <div class="col border p-3">
-        <h2>Product Details</h2>
+        <h4>Product Details</h4>
+        <hr />
         Name: @product.Name
         <br />
         The Product is: @(product.IsActive ? "Active" : "Inactive")
@@ -35,26 +37,66 @@
             <p>
                 Id: @selectVariant
                 <br />
-                Color: @product.LstProductVarients.FirstOrDefault(x => x.Id == selectVariant).Color
+                Color: @product.ProductVarients.FirstOrDefault(x => x.Id == selectVariant).Color
                 <br />
-                Size: @product.LstProductVarients.FirstOrDefault(x => x.Id == selectVariant).Size
+                Size: @product.ProductVarients.FirstOrDefault(x => x.Id == selectVariant).Size
                 <br />
-                Size: @product.LstProductVarients.FirstOrDefault(x => x.Id == selectVariant).Price
+                Size: @product.ProductVarients.FirstOrDefault(x => x.Id == selectVariant).Price
                 <br />
             </p>
         }
     </div>
 </div>
 
+<div class="row container">
+    <h4>Product Table</h4>
+    <hr />
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>IsActive</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Products)
+            {
+                <tr>
+                    <td>
+                        <input type="text" @bind="@item.Name" @bind:event="oninput" />
+                    </td>
+                    <td>
+                        <input type="text" @bind="@item.Price" @bind:event="oninput" />
+                    </td>
+                    <td>
+                        <input type="checkbox" @bind="@item.IsActive" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br /><br />
+    <h3>Product Summary</h3>
+    <hr />
+    @foreach (var item in Products)
+    {
+        <p>@item.Name [@item.Price] is @(item.IsActive ? "Active" : "Inactive")</p>
+    }
+</div>
+
+
 @code {
     private int selectVariant;
+
+    List<Product> Products = new List<Product>();
 
     Product product = new Product
     {
         Name = "Apple",
         Price = 1.5M,
         IsActive = true,
-        LstProductVarients = new List<ProductVarient>()
+        ProductVarients = new List<ProductVarient>()
         {
             new ProductVarient()
             {
@@ -79,4 +121,33 @@
             },
         }
     };
+
+    protected override void OnInitialized()
+    {
+        Products.Add(new()
+        {
+            Id = 1,
+            Name = "Midnight Blaze",
+            IsActive = false,
+            ProductVarients = new()
+                {
+                    new ProductVarient { Id = 3, Color="Purple", Price = 1000},
+                    new ProductVarient { Id = 3, Color="Rose", Price = 2000},
+                    new ProductVarient { Id = 3, Color="Magenta", Price = 3000}
+                }
+        });
+
+        Products.Add(new()
+        {
+            Id = 2,
+            Name = "Blossom Lily",
+            IsActive = true,
+            ProductVarients = new()
+            {
+                  new ProductVarient { Id = 3, Color="Purple", Price = 1000},
+                    new ProductVarient { Id = 3, Color="Rose", Price = 2000},
+                    new ProductVarient { Id = 3, Color="Magenta", Price = 3000}
+            }
+        });
+    }
 }
