@@ -26,7 +26,7 @@
                 }
             }
             <br />
-            <input type="button" value="Delete" class="btn btn-danger" />
+            <input type="button" value="Delete" class="btn btn-danger" @onclick="()=>DeleteProduct(item.Id)"/>
         </div>
         <br />
     }
@@ -45,6 +45,15 @@
     private void IncrementCounter(int num)
     {
         Count = Count + num;
+    }
+
+    private void DeleteProduct(int Id)
+    {
+        var prod = Products.FirstOrDefault(x => x.Id == Id);
+        if(prod != null)
+        {
+            Products.Remove(prod);
+        }
     }
 
     private List<Product> Products = new List<Product>();
