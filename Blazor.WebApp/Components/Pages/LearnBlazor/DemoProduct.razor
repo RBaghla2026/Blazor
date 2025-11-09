@@ -3,11 +3,13 @@
 <div class="row">
     <h3>Demo Product</h3>
     <p>Favourite Count: @FavoriteCount</p>
+    <p>Selected Product: @SelectedProduct</p>
     <hr />
 
     @foreach (var item in Products)
     {
-        <_IndividualComponent Prod="@item" OnFavoriteUpdate="IncrementFavoriteCount">
+        <_IndividualComponent Prod="@item" OnFavoriteUpdate="IncrementFavoriteCount"
+            OnDivSelectionUpdate="UpdateSelectedProduct">
 
         </_IndividualComponent>
         <br />
@@ -16,6 +18,12 @@
 
 @code {
     private int FavoriteCount = 0;
+    private string SelectedProduct;
+
+    protected void UpdateSelectedProduct(string productName)
+    {
+        SelectedProduct = productName;
+    }
 
     protected void IncrementFavoriteCount(bool isSelected)
     {
