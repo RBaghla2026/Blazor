@@ -10,6 +10,8 @@
         </div>
     }
 
+    <input type="button" class="btn btn-success" value="Submit" @onclick="OnButtonClicked" />
+
 </div>
 
 @code {
@@ -18,4 +20,7 @@
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback OnButtonClicked { get; set; }
 }

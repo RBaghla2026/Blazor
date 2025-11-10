@@ -1,14 +1,23 @@
 ﻿@page "/learnblazor/parentcomponent"
 
 <h3>Parent Component</h3>
-<_ChildComponent ChildMessage="This is the child component message passed from Parent component">
+
+<_ChildComponent ChildMessage="This is the child component message passed from Parent component" OnButtonClicked="ShowMessage">
     This is the fragement sent from parent
 </_ChildComponent>
+@Message
+
 
 <_ChildComponent ChildMessage="This is the child component message passed from Parent component">
 
 </_ChildComponent>
 
 @code {
+    public string Message;
+
+    public void ShowMessage()
+    {
+        Message = "Button is clicked from child component";
+    }
 
 }
