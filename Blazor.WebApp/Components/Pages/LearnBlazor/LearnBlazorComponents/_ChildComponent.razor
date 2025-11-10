@@ -1,0 +1,10 @@
+﻿<div>
+    <div class="alert alert-info" role="alert">
+        @ChildMessage
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? ChildMessage { get; set; }
+}
