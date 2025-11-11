@@ -2,7 +2,10 @@
 
 <h3>Parent Component</h3>
 
-<_ChildComponent ChildMessage="This is the child component message passed from Parent component" OnButtonClicked="ShowMessage">
+<_ChildComponent 
+    ChildMessage="This is the child component message passed from Parent component"
+                 GrandChildComponentMessage="Hello from Parent Component to Grand Child Component"
+    OnButtonClicked="ShowMessage">
     <ChildContent>This is the Child Content sent from parent</ChildContent>
     <ChildFrgamentContent>This is the Child fragement Content sent from parent</ChildFrgamentContent>
 </_ChildComponent>
