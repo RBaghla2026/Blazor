@@ -3,10 +3,18 @@
         @ChildMessage
     </div>
 
+
     @if (ChildContent != null)
     {
         <div class="alert alert-success">
             @ChildContent
+        </div>
+    }
+
+    @if (ChildFrgamentContent != null)
+    {
+        <div class="alert alert-success">
+            @ChildFrgamentContent
         </div>
     }
 
@@ -20,6 +28,9 @@
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildFrgamentContent { get; set; }
 
     [Parameter]
     public EventCallback OnButtonClicked { get; set; }
