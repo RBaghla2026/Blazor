@@ -18,7 +18,7 @@
         </div>
     }
 
-    <_GrandChildComponent GrandChildComponentMessage="@GrandChildComponentMessage"></_GrandChildComponent>
+    <_GrandChildComponent></_GrandChildComponent>
 
     <input type="button" class="btn btn-success" value="Submit" @onclick="OnButtonClicked" />
 
@@ -36,7 +36,4 @@
 
     [Parameter]
     public EventCallback OnButtonClicked { get; set; }
-
-    [Parameter]
-    public string GrandChildComponentMessage { get; set; } 
 }
