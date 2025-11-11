@@ -3,11 +3,16 @@
         This is the Grand Child Component.
         <br/>
         The Grand Child Component Message: @GrandChildComponentMessage
+        <br/>
+        The Lucky Number: @LuckyNumber
     </div>
 
 </div>
 
 @code {
-    [CascadingParameter]
+    [CascadingParameter(Name ="Message")]
     public string GrandChildComponentMessage { get; set; }
+
+    [CascadingParameter(Name ="LuckyNumber")]
+    public string LuckyNumber { get; set; }
 }

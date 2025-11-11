@@ -2,12 +2,14 @@
 
 <h3>Parent Component</h3>
 
-<CascadingValue Value="@GrandChildComponentMessage">
-    <_ChildComponent ChildMessage="This is the child component message passed from Parent component"                     
-                     OnButtonClicked="ShowMessage">
-        <ChildContent>This is the Child Content sent from parent</ChildContent>
-        <ChildFrgamentContent>This is the Child fragement Content sent from parent</ChildFrgamentContent>
-    </_ChildComponent>
+<CascadingValue Value="@GrandChildComponentMessage" Name="Message">
+    <CascadingValue Value="@LuckyNumber" Name="LuckyNumber">
+        <_ChildComponent ChildMessage="This is the child component message passed from Parent component"
+                         OnButtonClicked="ShowMessage">
+            <ChildContent>This is the Child Content sent from parent</ChildContent>
+            <ChildFrgamentContent>This is the Child fragement Content sent from parent</ChildFrgamentContent>
+        </_ChildComponent>
+    </CascadingValue>
 </CascadingValue>
 @Message
 
@@ -19,6 +21,7 @@
 @code {
     private string GrandChildComponentMessage = "Hello from Parent Component to Grand Child Component";
     public string Message;
+    public string LuckyNumber = "7";
 
     public void ShowMessage()
     {
